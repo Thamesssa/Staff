@@ -25,6 +25,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Staff
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        staff.h staff.cpp
+        stafflist.h stafflist.cpp
+        staffwriter.h staffwriter.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Staff APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
