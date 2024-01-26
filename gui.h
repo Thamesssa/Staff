@@ -1,8 +1,9 @@
 #ifndef GUI_H
 #define GUI_H
 
+#include "stafflist.h"
 #include <QWidget>
-#include <QTextEdit>
+
 
 class QLineEdit;
 class QCalendarWidget;
@@ -18,11 +19,16 @@ public:
     explicit gui(QWidget *parent = nullptr);
     ~gui();
 private slots:
+    void enableProcessButton();
+    void process();
+    void writeTofile();
 
 
 private:
     void setUpGui();
-    QTextEdit *nameEdit;
+
+    StaffList  staffList;
+    QLineEdit *nameEdit;
     QCalendarWidget *calenda;
     QComboBox *typeCombo;
     QPushButton *processButton;
