@@ -12,7 +12,7 @@
 gui::gui(QWidget *parent)
     : QWidget{parent}, nameEdit{new QLineEdit},calenda(new QCalendarWidget),
     typeCombo{new QComboBox}, processButton{new QPushButton("Process Button")},
-    writeButton{new QPushButton("Write to file")}
+    writeButton{new QPushButton("Write to file")}, staffList{new StaffList}
 
 {
     setUpGui();
@@ -27,7 +27,9 @@ gui::gui(QWidget *parent)
 
 gui::~gui()
 {
+    delete staffList;
 }
+
 
 void gui::enableProcessButton()
 {
@@ -45,8 +47,8 @@ void gui::process()
 
     Staff::StaffType type{static_cast<Staff::StaffType>(typeIndex)};
 
-    Staff staff{name, date, type};
-    staffList.addStaff(staff);
+    Staff *staff{new Staff(name, date, type)};
+    staffList->addStaff(staff);
 
     nameEdit->clear();
     nameEdit->setFocus();

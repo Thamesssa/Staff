@@ -7,11 +7,11 @@
 class StaffWriter
 {
 public:
-    StaffWriter(StaffList sl);
+    StaffWriter(StaffList *sl);
     bool writeToFile() const;
 
 private:
-    StaffList staffList;
+    StaffList *staffList;
 };
 
 #endif // STAFFWRITER_H

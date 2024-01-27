@@ -40,7 +40,7 @@ Staff::StaffType Staff::getType() const
     return type;
 }
 
-QString Staff::getTypeAsString()
+QString Staff::getTypeAsString() const
 {
     if(type == Permanent)
         return "Permanent";

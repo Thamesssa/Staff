@@ -18,6 +18,7 @@ class gui : public QWidget
 public:
     explicit gui(QWidget *parent = nullptr);
     ~gui();
+
 private slots:
     void enableProcessButton();
     void process();
@@ -27,7 +28,7 @@ private slots:
 private:
     void setUpGui();
 
-    StaffList  staffList;
+    StaffList  *staffList;
     QLineEdit *nameEdit;
     QCalendarWidget *calenda;
     QComboBox *typeCombo;

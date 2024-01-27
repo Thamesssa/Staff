@@ -4,7 +4,7 @@
 
 
 
-StaffWriter::StaffWriter(StaffList sl): staffList{sl}
+StaffWriter::StaffWriter(StaffList *sl): staffList{sl}
 {
 
 }
@@ -17,13 +17,23 @@ bool StaffWriter::writeToFile() const
 
     QTextStream toFile(&file);
 
-    QList<Staff> list = staffList.getStaffList();
+    QList<Staff*> list = staffList->getStaffList();
 
-    foreach (Staff s, list) {
+    foreach (Staff *s, list) {
 
-        toFile << "Name: " << s.getName() << ";";
-        toFile << "Birth dste: " << s.getDate().toString() << ";";
-        toFile << "Type: " << s.getTypeAsString() << '\n' ;
+       const QMetaObject *meta = s->metaObject();
+
+        QString result;
+
+        for (int i = meta->propertyOffset(); i < meta->propertyCount(); ++i) {
+            const QMetaProperty prop = meta->property(i);
+            QString name = prop.name();
+            QVariant value = prop.read(s);
+            QString strValue = value.toString();
+
+            result += prop.read(s).toString() + " ";
+        }
+        toFile << result << '\n';
 
     }
 
